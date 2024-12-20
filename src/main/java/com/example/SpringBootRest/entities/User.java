@@ -21,7 +21,7 @@ private String lastName;
 @Column(name="phone")
 private int phone;
 @ManyToOne
-@JoinColumn(name="id_suppplier",nullable = false)
-private Optica optica;
+   @JoinColumn(name="id_suppplier",nullable = false)
+   private Optica optica;
 
 }

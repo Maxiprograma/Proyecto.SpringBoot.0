@@ -1,12 +1,7 @@
 package com.example.SpringBootRest.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-
 import lombok.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Setter
 @Getter
@@ -24,10 +19,9 @@ public class Optica {
 @Column(name="nombre")
 private String name;
 
-@OneToMany(mappedBy = "rubrooptica",cascade=CascadeType.ALL,fetch = FetchType.LAZY,orphanRemoval = true)
-@JsonIgnore
-private List<Article> articulos= new ArrayList<>();
-private List <User> user=new ArrayList<>();
+//@OneToMany(mappedBy = "rubrooptica",cascade=CascadeType.ALL,fetch = FetchType.LAZY,orphanRemoval = true)
+//private List<Article> articulos= new ArrayList<>();
+//private List <User> user=new ArrayList<>();
 
 
 }
