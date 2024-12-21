@@ -18,7 +18,7 @@ public class Article {
     private Long id;
 // double price
 
-    @Column(name = "nombre")
+    @Column(name = "nombre", unique = true)
     private String nombreArticulo;
 
     @Column(name = "precio")

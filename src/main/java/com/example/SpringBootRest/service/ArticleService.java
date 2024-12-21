@@ -27,7 +27,7 @@ public class ArticleService implements IArticleService {
 
     @Override
     public void save(Article article) throws BussinesException {
-        if (!articleRepository.findByNombre(article.getNombreArticulo()).equals(null)) {
+        if (articleRepository.findByNombre(article.getNombreArticulo()) == null) {
             articleRepository.save(article);
         } else {
           throw new BussinesException("El Articulo ya esta registrado en la DB!");
