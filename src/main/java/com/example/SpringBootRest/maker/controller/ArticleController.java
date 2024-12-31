@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,24 +33,26 @@ public class ArticleController {
 
     @PostMapping("/save")
     public ResponseEntity save(@RequestBody Article article)  {
+            HashMap<String, String> response = new HashMap<>();
             try {
                 articleservice.save(article);
-                return  ResponseEntity.ok("Articulo guardado!");
+                response.put("msg","Articulo guardado!");
+                return  ResponseEntity.ok(response);
             } catch (BussinesException e) {
-                return  ResponseEntity.badRequest().body("Error "+ e.getMessage());
+                response.put("error","Error "+ e.getMessage());
+                return  ResponseEntity.badRequest().body(response);
             }
     }
 
     @PutMapping("/update/{id}")
     public ResponseEntity.BodyBuilder update(@PathVariable Long id,@RequestBody Article article){
-      Optional<Article>articleOptional;
-       articleOptional=articleservice.findById(id);
+       Optional<Article>articleOptional;
+       articleOptional = articleservice.findById(id);
        return ResponseEntity.ok();
     }
 
-
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity deleteById(@PathVariable Long id) {
+    public ResponseEntity deleteById(@PathVariable Long id) throws BussinesException {
         if (id != null) {
             articleservice.deleteById(id);
             return ResponseEntity.ok("Registro Eliminado");

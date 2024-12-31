@@ -5,6 +5,7 @@ import com.example.SpringBootRest.excepciones.BussinesException;
 import com.example.SpringBootRest.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,13 +31,20 @@ public class ArticleService implements IArticleService {
         if (articleRepository.findByNombre(article.getNombreArticulo()) == null) {
             articleRepository.save(article);
         } else {
-          throw new BussinesException("El Articulo ya esta registrado en la DB!");
+          throw new BussinesException("El Articulo con el nombre: "+ article.getNombreArticulo() + " ya esta registrado en la DB!");
         }
     }
 
     @Override
-    public void deleteById(Long id) {
-
+    @Transactional
+    public void deleteById(Long id) throws BussinesException {
+        try {
+            Optional<Article> articulo = articleRepository.findById(id);
+            Article articuloBorrado = articulo.get();
+            articuloBorrado.setBorrado(true);
+        } catch (Exception e) {
+            throw new BussinesException("Error" + e);
+        }
     }
 
 }

@@ -24,5 +24,8 @@ public class Article {
     @Column(name = "precio")
     private double price;
 
+    @Column(name = "borrado")
+    private boolean borrado = false;
+
 }
 

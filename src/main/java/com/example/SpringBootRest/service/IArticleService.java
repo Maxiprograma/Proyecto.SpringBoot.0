@@ -14,6 +14,6 @@ public interface IArticleService {
 
     void save(Article article) throws BussinesException ;
 
-    void deleteById(Long id);
+    void deleteById(Long id) throws BussinesException;
 
 }
