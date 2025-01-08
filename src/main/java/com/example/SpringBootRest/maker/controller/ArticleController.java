@@ -26,9 +26,8 @@ public class ArticleController {
     }
 
     @GetMapping("/findall")
-    public ResponseEntity<Article> findall(@RequestBody Article article) {
-        List<Article> articles = articleservice.findall();
-        return ResponseEntity.ok().build();
+    public ResponseEntity<?> findall() {
+        return ResponseEntity.ok(articleservice.findall());
     }
 
     @PostMapping("/save")

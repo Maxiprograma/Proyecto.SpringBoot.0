@@ -15,4 +15,8 @@ public interface ArticleRepository extends JpaRepository<Article,Long> {
     @Query("SELECT a FROM Article a WHERE a.nombreArticulo = :nombre")
     Article findByNombre(@Param("nombre") String nombre);
 
+    @Query("SELECT a FROM Article a WHERE a.borrado = false")
+    @Override
+    List<Article> findAll();
+
 }

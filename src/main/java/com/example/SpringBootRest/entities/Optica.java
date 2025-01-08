@@ -10,10 +10,9 @@ import lombok.*;
 @NoArgsConstructor
 @Entity
 @Table(name ="rubros")
-
 public class Optica {
-@Id
-@GeneratedValue(strategy= GenerationType.IDENTITY)
+   @Id
+   @GeneratedValue(strategy= GenerationType.IDENTITY)
  private Long id;
 
 @Column(name="nombre")
